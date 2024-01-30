@@ -19,7 +19,7 @@ class MyEmbeddingFunction(EmbeddingFunction):
         return embeddings
 
 # 初始化ChromaDB客户端和模型
-path = r"DB"
+path = r"DataBase"
 model_id = "damo/nlp_gte_sentence-embedding_chinese-base"
 pipeline_se = pipeline(Tasks.sentence_embedding, model=model_id, sequence_length=512)
 chroma_client = chromadb.PersistentClient(path)
@@ -32,11 +32,11 @@ collection = chroma_client.create_collection(
 )
 
 
-# # Set up the collection
-# collection = chroma_client.get_collection(
-#     name="Gadio2023", 
-#     embedding_function=MyEmbeddingFunction()
-# )
+# Set up the collection
+collection = chroma_client.get_collection(
+    name="Gadio2023", 
+    embedding_function=MyEmbeddingFunction()
+)
 
 # 灌入数据到数据库，带进度条
 def process_csv(file_path, collection):
@@ -61,7 +61,7 @@ def process_csv(file_path, collection):
             pbar.update(1)
 
 # 调用函数处理CSV文件
-process_csv(r"G:\Pet_Projects\Gadio\embedding\final_data_with_embeddings.csv", collection)
+process_csv(r"final_data_with_embeddings.csv", collection)
 
 
 results = collection.query(
