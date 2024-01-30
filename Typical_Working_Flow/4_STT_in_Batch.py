@@ -1,4 +1,6 @@
-from funasr import infer
+#Now STT (Speach to txt)
+
+from funasr import AutoModel
 import os
 import time
 import json
@@ -8,15 +10,19 @@ from tqdm import tqdm
 text_length_threshold = 128
 
 # 指定音频文件夹路径和输出文件夹
-audio_dir = r"G:\Pet_Projects\Gadio\wav"
-output_dir = r"G:\Pet_Projects\Gadio\txt"
+audio_dir = r"wav"
+output_dir = r"txt"
 
 # 确保输出文件夹存在
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 # 初始化ASR模型
-p = infer(model="paraformer-zh", vad_model="fsmn-vad", punc_model="ct-punc", model_hub="ms")
+model = AutoModel(model="paraformer-zh", model_revision="v2.0.4",
+                  vad_model="fsmn-vad", vad_model_revision="v2.0.4",
+                  punc_model="ct-punc-c", punc_model_revision="v2.0.4",
+                  # spk_model="cam++", spk_model_revision="v2.0.2",
+                  )
 
 # 获取所有WAV文件
 audio_files = [f for f in os.listdir(audio_dir) if f.endswith('.wav')]
@@ -37,8 +43,11 @@ for file_name in progress_bar:
         output_json_path = os.path.join(output_dir, os.path.splitext(file_name)[0] + '.json')
         
         # 进行语音识别
-        res = p(audio_file_path, batch_size_token=5000)
-        
+        # res = p.generate(audio_file_path, batch_size_token=5000)
+        res = model.generate(input=audio_file_path, 
+                     batch_size_s=5000)
+
+
         # 文本处理和保存
         combined_sentences = []
         current_text = ''
