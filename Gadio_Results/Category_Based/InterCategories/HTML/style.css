@@ -1,0 +1,81 @@
+.container {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    min-height: 100%; /* 使容器至少有页面的高度 */
+    box-sizing: border-box; /* 确保内边距和边框不增加宽度 */
+    padding: 20px; /* 添加一些内边距 */
+}
+
+.sentence {
+    margin: 20px 0;
+    font-size: 1.2em; /* 调整句子文本大小 */
+}
+
+.drop-zone {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+    border: 2px dashed #555; /* 调整为更深的边框颜色 */
+    border-radius: 15px; /* 圆角边框 */
+    background-color: #444; /* 拖放区域的背景颜色 */
+    color: #fff; /* 字体颜色 */
+    margin: 0 10px;
+}
+
+.category {
+    margin: 10px;
+    padding: 5px 10px;
+    border: 1px solid #555; /* 调整边框颜色 */
+    border-radius: 15px; /* 圆角边框 */
+    background: linear-gradient(to right, #575757, #414141); /* 渐变背景 */
+    color: #fff; /* 字体颜色 */
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+
+.category-container {
+    padding: 10px;
+    background-color: #383838; /* 类别容器背景颜色 */
+    border-radius: 10px; /* 圆角边框 */
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#results {
+    margin-top: 20px;
+    border-top: 1px solid #555; /* 调整边框颜色 */
+    padding: 10px;
+    background-color: #383838; /* 结果区域背景颜色 */
+    border-radius: 10px; /* 圆角边框 */
+    color: #fff; /* 字体颜色 */
+}
+
+/* 设置超链接的默认颜色为白色 */
+a {
+    color: white;
+    text-decoration: none; /* 去除下划线 */
+}
+
+/* 设置鼠标悬停在链接上时的颜色（如果需要的话） */
+a:hover {
+    color: #b62b2b;
+}
+
+/* 设置链接被访问过后的颜色 */
+a:visited {
+    color: #b9b9b9;
+}
+
+
+
+/* 设置整个页面的样式 */
+html, body {
+    margin: 0; /* 移除边距 */
+    padding: 0; /* 移除内边距 */
+    height: 100%; /* 设置高度 */
+    background-color: #333; /* 整个页面的背景颜色 */
+}
